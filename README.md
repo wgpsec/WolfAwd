@@ -7,24 +7,24 @@
 
 ## 目录结构
 
-├── data # 框架运行所需要的持久化文件
-├── games  
-├── library  
-│ ├── controller
-│ │ ├── common
-│ │ ├── defense
-│ │ └── exploit
-│ ├── models
-│ └── views
-│ │ ├── common
-│ │ ├── defense
-│ │ └── exploit
-│ ├── common
-│ ├── defense
-│ └── exploit
-├── config.py
-├── README.md
-└── requirements.txt
+├── data # 框架运行所需要的持久化文件   
+├── games     
+├── library     
+│ ├── controller   
+│ │ ├── common   
+│ │ ├── defense   
+│ │ └── exploit   
+│ ├── models   
+│ └── views   
+│ │ ├── common   
+│ │ ├── defense   
+│ │ └── exploit   
+│ ├── common   
+│ ├── defense   
+│ └── exploit   
+├── config.py   
+├── README.md   
+└── requirements.txt   
 
 ## 数据表结构
 
