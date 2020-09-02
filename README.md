@@ -86,3 +86,5 @@ https://github.com/orgs/wgpsec/projects/3
 
 - 2020-08-31 
   - 完成第一版初版
+- 2020-9-1
+  - 加入SSH连接功能
