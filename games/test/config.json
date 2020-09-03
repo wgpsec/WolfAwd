@@ -1,0 +1,9 @@
+{
+	"hostSum": 1,
+	"hostConfig": [{
+		"host": "192.168.159.169",
+		"port": "22",
+		"username": "root",
+		"password": "wcyjswx"
+	}]
+}
