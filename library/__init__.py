@@ -1,12 +1,13 @@
 import sys
 from importlib import import_module
-
+from library.utils.orm import database_init
 
 from .utils.error import *
 
 class WolfAwd():
     def __init__(self):
-        pass
+        #　数据库会话
+        self.session = database_init()
 
     def run(self, global_config):
         self.global_config = global_config
