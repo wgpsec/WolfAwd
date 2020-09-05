@@ -8,3 +8,6 @@ import requests
 
 def get_requests():
     return requests
+
+
+requests = get_requests()

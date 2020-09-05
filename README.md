@@ -43,7 +43,8 @@
 
 | 字段名称 |     类型     | 说明                                 |
 | :------: | :----------: | ------------------------------------ |
-|    id    |     int      | 索引（自增 id）                      |
+|    id    |     int      | 索引（自增 id）             
+         |
 |   name   | varchar（30) | 名称                                 |
 |   type   |    int(2)    | 类型 0 flag 1 webshell 2 systemshell |
 |    os    |              | 系统类别 0 php1 python               |
@@ -54,7 +55,7 @@
 | :--------------: | :----------: | --------------- |
 |        id        |     int      | 索引（自增 id） |
 |        ip        | varchar（30) | 名称            |
-|   ims_connect    |              | 类型            |
+|    is_reach      |              | 类型            |
 |   is_get_shell   |              | 系统类别        |
 |       flag       |              |                 |
 | flag_create_time |              |                 |

@@ -1,5 +1,5 @@
 from config import global_config
 import library
 
-
-library.run(global_config)
+if __name__ == '__main__':
+    library.run(global_config)

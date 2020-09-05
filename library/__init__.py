@@ -9,6 +9,7 @@ class WolfAwd():
         #　数据库会话
         self.session = database_init()
 
+
     def run(self, global_config):
         self.global_config = global_config
         try:
@@ -23,6 +24,16 @@ class WolfAwd():
         except ModuleNotFoundError:
             raise FrameworkRuntimeException("mode default_type 配置错误，模块未找到")
 
+        """
+        导入data,包含攻击信息
+        这里是poc攻击后执行的命令
+        后期拼接ip执行反弹shell
+        """
+        self.data = {
+            "getwebshell": "phpinfo",
+            "getosshell": "id",
+        }
+
         self.common_views.show()
         """
         蒋games文件夹加入搜索路径,导入
@@ -33,11 +44,14 @@ class WolfAwd():
         """
         sys.path.append("../games")
         import games
+        self.current_game_name = games.config["now_game"]
         self.current_game = import_module("games."+games.config["now_game"])
         self.current_game_config = self.current_game.config
         #　如果用户未指定，type类型,既攻击还是防守,使用框架默认配置
         self.current_type = self.current_game_config.get('type', default_type)
         # app = WolfAwd(current_game_name)
+
+
         """
          实现视图的切换,
          攻击和防护模块show函数应该返回希望切换的模块,defense 或者 exploit
@@ -52,7 +66,22 @@ class WolfAwd():
         """
         self.common_views.exit()
 
+    @property
+    def poces(self):
+        """
+        类属性注册poc
+        后期扩展自动发现,每次获取到的最新的poc
+
+        """
+        poces = []
+        for poc in self.current_game.config['poces']:
+            poc = import_module("games."+self.current_game_name+".poc."+poc)
+            poces.append(poc)
+        return poces
+
+
 """
+
 功能类导入app,既可使用app下面的数据
 
 """

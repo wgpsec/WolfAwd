@@ -2,9 +2,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
+import os
 
-
-
+# print(os.getcwd())
 Base = declarative_base()
 
 
@@ -12,9 +12,9 @@ class Poc(Base):
     """
     name 为poc名字
     shell_type 为poc类型,分三种,
-        0,可以获取shell
+        2,可以获取shell
         1, 可以获取webshell
-        2, 只能get flag
+        0, 只能get flag
     os_type
         0 php
         1 python
@@ -73,8 +73,10 @@ class Message(Base):
 def database_init(game_name='test'):
     # 　先使用内存数据库,
     # engine = create_engine('sqlite://')
+    # engine = create_engine(
+    #     'sqlite:///../../games/' + game_name + '/data.sqlite3')
     engine = create_engine(
-        'sqlite:///../../games/' + game_name + '/data.sqlite3')
+        'sqlite:///games/' + game_name + '/data.sqlite3')
     Base.metadata.create_all(engine)
     # 返回数据库操操作对象Session
     return sessionmaker(bind=engine)
@@ -85,7 +87,9 @@ if __name__ == '__main__':
 
     session = Session()
     ed_poc = Poc(name='a', shell_type=0, os_type=0)
+    ed_target = Target(ip="127.0.0.1", is_get_shell=False)
     session.add(ed_poc)
+    session.add(ed_target)
     session.commit()
 
 
