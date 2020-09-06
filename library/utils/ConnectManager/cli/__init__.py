@@ -2,7 +2,7 @@ from .SshConnect import SshConnect
 from .SendAllCommand import SendAll
 
 
-class PublicUtils:
+class ConnectManager:
     def __init__(self):
         """
         __init__ 选择发送全部主机指令或者进入单个主机的shell目前可以实现加固的SSH连接

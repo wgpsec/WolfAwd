@@ -1,0 +1,28 @@
+from .FileDownLoad import Downloader
+from .FileUpload import Uploader
+
+
+class FileManager:
+    def __init__(self):
+        self.usage()
+        while True:
+            function_choice = input(">>>")
+            if function_choice == "0" or function_choice == "help":
+                self.usage()
+            elif function_choice == "1" or function_choice == "down":
+                Downloader()
+            elif function_choice == "2" or function_choice == "upload":
+                Uploader()
+
+    @staticmethod
+    def usage():
+        """
+        帮助信息
+        """
+        print("+----------------------------------------------------+")
+        print("|Num|Command |    Describe                           |")
+        print("+----------------------------------------------------+")
+        print("|0. | help   |    Get Usage                          |")
+        print("|1. | down   |    Download files from server         |")
+        print("|2. | upload |    Upload files from Server           |")
+        print("+----------------------------------------------------+")

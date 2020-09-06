@@ -15,16 +15,19 @@ class SshConnect:
              self.port
              self.username
              self.passwd
-
         """
+        
         self.config_file = open("/games/test/config.json", "r")
-        self.config = json.load(self.config_file)["hostFirstConfig"]
+        self.config = json.load(self.config_file)["hostConfig"]
         self.host = self.config[host_num].get("host")
         self.port = int(self.config[host_num].get("port"))
         self.username = self.config[host_num].get("username")
         self.password = self.config[host_num].get("password")
 
     def host_list(self):
+        """
+        用以输出所有的服务器信息
+        """
         host_sum = int(self.config["hostSum"])
         print("------------------------------------------------")
         for i in range(host_sum):

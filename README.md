@@ -41,13 +41,12 @@
 
 ### poc
 
-| 字段名称 |     类型     | 说明                                 |
-| :------: | :----------: | ------------------------------------ |
-|    id    |     int      | 索引（自增 id）             
-         |
-|   name   | varchar（30) | 名称                                 |
+| 字段名称 |     类型     | 说明           |
+| :------: | :----------: | :---------: |
+|    id    |     int      | 索引（自增 id|
+|   name   | varchar（30) | 名称          |
 |   type   |    int(2)    | 类型 0 flag 1 webshell 2 systemshell |
-|    os    |              | 系统类别 0 php1 python               |
+|    os    | int | 系统类别 0 php1 python|
 
 ### target
 
