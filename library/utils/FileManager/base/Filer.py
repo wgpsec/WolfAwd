@@ -1,7 +1,7 @@
 import paramiko
 
 
-class Downloader:
+class Filer:
     def __init__(self, host):
         transport = paramiko.Transport(host.hostname, host.port)
         transport.connect(username=host.username, password=host.password)

@@ -6,7 +6,7 @@ from .utils.error import *
 
 class WolfAwd():
     def __init__(self):
-        #　数据库会话
+        # 数据库会话
         self.session = database_init()
         self.reverse_shell_ip = '192.168.0.102'
         self.reverse_shell_port = 7777
