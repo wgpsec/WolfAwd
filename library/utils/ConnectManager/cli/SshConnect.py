@@ -1,5 +1,5 @@
 from library.utils.ConnectManager.base.SshConnect import ConnectServer
-import json
+from library.utils.getconf import GetHostConfig
 
 """
 目前主要框架没写出来，CTF name应该是贯穿整个程序运行的
@@ -16,25 +16,20 @@ class SshConnect:
              self.username
              self.passwd
         """
-        
-        self.config_file = open("/games/test/config.json", "r")
-        self.config = json.load(self.config_file)["hostConfig"]
-        self.host = self.config[host_num].get("host")
-        self.port = int(self.config[host_num].get("port"))
-        self.username = self.config[host_num].get("username")
-        self.password = self.config[host_num].get("password")
+
+        self.host_conf = GetHostConfig(host_num, gamename="Test")
 
     def host_list(self):
         """
         用以输出所有的服务器信息
         """
-        host_sum = int(self.config["hostSum"])
+        host_sum = int(self.host_conf["hostSum"])
         print("------------------------------------------------")
         for i in range(host_sum):
             print("[Server-%d]==>" % i +
-                  "[IP]:" + self.config[i].get("host") +
-                  "[Username]:" + self.config[i].get("username") +
-                  "[Password]:" + self.config[i].get("password"))
+                  "[IP]:" + self.host_conf[i].get("host") +
+                  "[Username]:" + self.host_conf[i].get("username") +
+                  "[Password]:" + self.host_conf[i].get("password"))
         print("------------------------------------------------")
 
     def connect_shell(self):

@@ -1,5 +1,4 @@
-from .FileDownLoad import Downloader
-from .FileUpload import Uploader
+from .Filer import UseFiler
 
 
 class FileManager:
@@ -10,9 +9,9 @@ class FileManager:
             if function_choice == "0" or function_choice == "help":
                 self.usage()
             elif function_choice == "1" or function_choice == "down":
-                Downloader()
+                UseFiler(method="download")
             elif function_choice == "2" or function_choice == "upload":
-                Uploader()
+                UseFiler(method="upload")
 
     @staticmethod
     def usage():
