@@ -41,12 +41,12 @@
 
 ### poc
 
-| 字段名称 |     类型     | 说明           |
-| :------: | :----------: | :---------: |
-|    id    |     int      | 索引（自增 id|
-|   name   | varchar（30) | 名称          |
+| 字段名称 |     类型     |                 说明                 |
+| :------: | :----------: | :----------------------------------: |
+|    id    |     int      |            索引（自增 id             |
+|   name   | varchar（30) |                 名称                 |
 |   type   |    int(2)    | 类型 0 flag 1 webshell 2 systemshell |
-|    os    | int | 系统类别 0 php1 python|
+|    os    |     int      |        系统类别 0 php1 python        |
 
 ### target
 
@@ -54,7 +54,7 @@
 | :--------------: | :----------: | --------------- |
 |        id        |     int      | 索引（自增 id） |
 |        ip        | varchar（30) | 名称            |
-|    is_reach      |              | 类型            |
+|     is_reach     |              | 类型            |
 |   is_get_shell   |              | 系统类别        |
 |       flag       |              |                 |
 | flag_create_time |              |                 |
@@ -89,7 +89,14 @@ https://github.com/orgs/wgpsec/projects/3
 - 2020-9-2
   - 加入命令发送全部主机功能
 - 2020-9-3
+
   - 完善配置读取
 
 - 2020-9-16
-  - AdianGg:最近比较忙，今天起继续不断更新，今日增加了配置读写Class，并修改了文件上传下载，SSH连接的一些代码，还要加入的有文件管理的列远程目录，配置wwwroot，实现内部的指令进行下载，在配置读写的Class中加入输出全部主机配置的功能
+
+  - AdianGg:最近比较忙，今天起继续不断更新，今日增加了配置读写 Class，并修改了文件上传下载，SSH 连接的一些代码，还要加入的有文件管理的列远程目录，配置 wwwroot，实现内部的指令进行下载，在配置读写的 Class 中加入输出全部主机配置的功能
+
+  ## 参考资料
+
+  AWD webshell
+  https://github.com/3sNwgeek/awd_worm_phpwebshell_framework/
