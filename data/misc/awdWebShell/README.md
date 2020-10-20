@@ -6,4 +6,8 @@
 
 ```
 docker run -v `pwd`:/var/www/html --rm -p 8003:80 php:5.6-apache
+
+// 测试目录
+./wwww 
+php -S 0.0.0.0:40003
 ```
