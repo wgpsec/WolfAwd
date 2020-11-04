@@ -1,14 +1,27 @@
 import pyinotify
 import os
-from .WebSiteEventHandler import WebSiteEventHandler
+from .aWebSiteEventHandler import WebSiteEventHandler
+from .config import WATCH_DIR,WATCH_FLAG_ACCESS
 
-WATCH_DIR = os.getcwd()+'/defense_inotify/www'
+def get_watch_dir(dir_entry, result=[]):
+    result.append(dir_entry)
+    watch_entry = os.listdir(dir_entry)
+    for i in watch_entry:
+        i = os.path.join(dir_entry, i)
+        if os.path.isdir(i):
+            get_watch_dir(i, result)
+    return result
 
 
 def main():
     wm = pyinotify.WatchManager()
-    wm.add_watch(WATCH_DIR, pyinotify.ALL_EVENTS, rec=True)
 
+    dir_list = get_watch_dir(WATCH_DIR)
+    # watch_entry.append(WATCH_DIR)
+    for i in dir_list:
+        wm.add_watch(i, pyinotify.ALL_EVENTS, rec=True)
+    if os.path.isfile(WATCH_FLAG_ACCESS):
+        wm.add_watch(WATCH_FLAG_ACCESS, pyinotify.ALL_EVENTS, rec=True)
     eh = WebSiteEventHandler()
     notifier = pyinotify.Notifier(wm, eh)
 
