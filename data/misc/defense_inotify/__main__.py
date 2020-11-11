@@ -1,7 +1,8 @@
 import pyinotify
 import os
 from .aWebSiteEventHandler import WebSiteEventHandler
-from .config import WATCH_DIR,WATCH_FLAG_ACCESS
+from .config import WATCH_DIR, WATCH_FLAG_ACCESS
+
 
 def get_watch_dir(dir_entry, result=[]):
     result.append(dir_entry)
