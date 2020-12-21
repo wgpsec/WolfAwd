@@ -15,3 +15,40 @@ e
     
 ### 设计思路
 
+因为以前的设计过于繁琐,距离可以用遥遥无期,因此参考另一个框架对项目进行重构
+
+基本想法,框架会加载games下poc,需要传入-m参数,指定要加载的poc
+加载后,根据用户传入的指令,例如get_flag 调用library下的all_attatck.py中的函数,生成cmd命令,然后利用poc执行,cmd支持返回字符串或者元组,元组内容为(执行的命令,回调函数),例如执行的命令可以为 cat /flag ,然后在回调函数中 获取flag并且提交,框架获取到此种类型的cmd时,会在获取命令执行结果后,执行回调函数
+同时框架支持执行利用poc进行权限维持,下次get_flag会首先,利用以维持的权限进行get_flag
+
+### 使用方法
+
+设置好games目录下的submit_flag 和targets 并且利用poc_test和flag_test进行测试
+
+编写poc
+利用框架自动化攻击
+
+```
+
+    parser = OptionParser()
+    parser.add_option("-m", "--module", \
+                      dest="module", default="attack", \
+                      help="Input the  func module here :)")
+    parser.add_option("-p", "--poc", \
+                      dest="vuln", default="chinaz",
+                      help="The vuln you want to use")
+    parser.add_option("-a", "--action", \
+                      dest="action", default="get_flag",
+                      help="The action you want to do")
+    parser.add_option("-c", "--command", \
+                      dest="command", default="",
+                      help="The command you want to exec")
+    parser.add_option("-t", "--targets", \
+                      dest="targets", default="",
+                      help="The target you want to attack")
+    (options, args) = parser.parse_args()
+
+    return options
+```
+示例命令:
+python3  run.py -p chinaz -a get_flag
