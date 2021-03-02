@@ -144,4 +144,4 @@ cython_debug/
 .vscode
 
 # games 测试信息
-
+logs/*.log

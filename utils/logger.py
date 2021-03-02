@@ -1,21 +1,24 @@
 #! /usr/bin/env python
 import logging
+from colorama import init
+init()
+from colorama import Fore, Back, Style
 import os
-import ctypes
+# import ctypes
+#
+# FOREGROUND_WHITE = 0x0007
+# FOREGROUND_BLUE = 0x01  # text color contains blue.
+# FOREGROUND_GREEN = 0x02  # text color contains green.
+# FOREGROUND_RED = 0x04  # text color contains red.
+# FOREGROUND_YELLOW = FOREGROUND_RED | FOREGROUND_GREEN
+#
+# STD_OUTPUT_HANDLE = -11
+# std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
 
-FOREGROUND_WHITE = 0x0007
-FOREGROUND_BLUE = 0x01  # text color contains blue.
-FOREGROUND_GREEN = 0x02  # text color contains green.
-FOREGROUND_RED = 0x04  # text color contains red.
-FOREGROUND_YELLOW = FOREGROUND_RED | FOREGROUND_GREEN
 
-STD_OUTPUT_HANDLE = -11
-std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
-
-
-def set_color(color, handle=std_out_handle):
-    bool = ctypes.windll.kernel32.SetConsoleTextAttribute(handle, color)
-    return bool
+# def set_color(color, handle=std_out_handle):
+#     bool = ctypes.windll.kernel32.SetConsoleTextAttribute(handle, color)
+#     return bool
 
 
 logger = None
@@ -48,17 +51,19 @@ class Logger:
         self.logger.debug(message)
 
     def info(self, message):
+        print(Fore.BLUE)
         self.logger.info(message)
+        print(Fore.WHITE)
 
-    def warning(self, message, color=FOREGROUND_YELLOW):
-        set_color(color)
-        self.logger.warning(message)
-        set_color(FOREGROUND_WHITE)
-
-    def error(self, message, color=FOREGROUND_RED):
-        set_color(color)
+    def warning(self, message):
+        print(Fore.YELLOW)
         self.logger.error(message)
-        set_color(FOREGROUND_WHITE)
+        print(Fore.WHITE)
+
+    def error(self, message):
+        print(Fore.RED)
+        self.logger.error(message)
+        print(Fore.WHITE)
 
     def cri(self, message):
         self.logger.critical(message)

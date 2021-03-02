@@ -7,7 +7,7 @@ import requests
 
 # logger = Logger.get_log()
 proxies = {
-    # "http": "http://127.0.0.1:8080"
+    "http": "http://127.0.0.1:8080"
 }
 
 
