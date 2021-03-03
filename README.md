@@ -53,14 +53,21 @@ e
 示例命令:
 
 ```
-通过漏洞利用文件chinaz获取flag,仅显示
+通过漏洞利用文件chinaz获取flag,仅显示,支持使用多个poc文件以空格分割
 python3  run.py -p chinaz -a get_flag
 自动获取并且提交flag
 python3  run.py -p chinaz -a submit_flag
 利用漏洞上传不死马
 python3  run.py -p chinaz -a submit_flag upload_backdoor
+自动获取并且提交flag,循环执行99999次,每180s执行一次
+python3  run.py  -p chinaz -a submit_flag -l 99999 -s 180
 ```
 
 ## TO-DO
-- [ ] 
 - [ ] 根据ip段快速生成targets文件
+- [ ] 编写防御模块
+- [ ] 使用协程或者多线程重构逻辑
+- [ ] 重构cmd模块逻辑,对php eval和system和读flag分开处理
+- [ ] 增加利用蠕虫马维持权限
+- [ ] 统一整个框架的请求类
+

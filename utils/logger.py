@@ -40,12 +40,15 @@ class Logger:
         fh.setLevel(Flevel)
         self.logger.addHandler(sh)
         self.logger.addHandler(fh)
+        global logger
+        logger = self
 
     def get_logger(self):
         if self.logger:
             return self.logger
         else:
             return self()
+
 
     def debug(self, message):
         self.logger.debug(message)

@@ -19,6 +19,12 @@ def parse_options():
     parser.add_option("-t", "--targets", \
                       dest="targets", default="",
                       help="The target you want to attack")
+    parser.add_option("-l", "--loop", \
+                      dest="loop", default="1",type=int,
+                      help="循环执行多少次默认一次")
+    parser.add_option("-s", "--loop_time", \
+                      dest="loop_time", default="0",type=int,
+                      help="每次循环执行暂停时间,默认0")
     (options, args) = parser.parse_args()
 
     return options

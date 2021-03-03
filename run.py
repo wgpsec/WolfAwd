@@ -1,10 +1,12 @@
 import os
+import time
 from utils.logger import Logger
 from utils.tools import parse_options
 from library import all_attack_func
 from library import all_guard_func
 from library.core import Attacker
 import importlib
+import traceback
 AWD_PATH = os.getcwd()
 LOGS_PATH = AWD_PATH + '/logs/logs.log'
 logger = Logger(LOGS_PATH)
@@ -16,6 +18,8 @@ class WolfAwd():
         self.command = options.command
         self.vulns = self.load_vuln_by_options(options)
         self.attacker = []
+        self.loop = options.loop
+        self.loop_time = options.loop_time
         # if options.command:
             # action(target_ip, target_port, command)
 
@@ -50,15 +54,24 @@ class WolfAwd():
             cmd = self.get_action_cmd(target_ip, target_port, command)
         attacker = Attacker(target_ip, target_port, cmd, self.vulns)
         self.attacker.append(attacker)
-        res = attacker.run()
         logger.info('%s:%s action 完成 结果如下 ' % (target_ip, target_port))
-        logger.info(res)
+        try:
+            res = attacker.run()
+            logger.info(res)
+        except Exception as e:
+            res = '运行失败'
+            logger.info(res)
+            logger.warning(e)
+            logger.debug(traceback.format_exc())
         logger.info('-------------------------')
 
     def run(self):
-        for target_ip, tartget_port in self.targets:
-            self.run_action(target_ip, tartget_port, self.command)
+        while self.loop:
+            for target_ip, tartget_port in self.targets:
+                self.run_action(target_ip, tartget_port, self.command)
 
+            self.loop -= 1
+            time.sleep(self.loop_time)
 if __name__ == "__main__":
     logger.info('WolfAwd start ')
     options = parse_options()
