@@ -1,6 +1,15 @@
-# 线下赛攻击框架
+<h1 align="center">WolfAWD 线下赛攻击框架 ⚔</h1>
 
-## run.py
+<p>
+  <img src="https://img.shields.io/badge/Language-Python3-blue" />
+  <img src="https://img.shields.io/badge/Version-1.0-blue" />
+</p>
+
+> WolfAWD 一款基于Python的AWD线下比赛框架
+
+## 🚀 开始使用
+
+run.py
 
 -m 指定模块
 -a 指定行为
@@ -29,7 +38,7 @@
 
 
 
-## 使用方法
+## ✨用法
 
 设置好games目录下的submit_flag 和targets 并且利用poc_test和flag_test进行测试
 
@@ -71,11 +80,15 @@ python3  run.py -p chinaz -a  upload_backdoor
 python3  run.py  -p chinaz -a submit_flag -l 99999 -s 180
 ```
 
-## TO-DO
+## 🛠Todo
 - [ ] 根据ip段快速生成targets文件
 - [ ] 编写防御模块
 - [ ] 使用协程或者多线程重构逻辑
 - [ ] 重构cmd模块逻辑,对php eval和system和读flag分开处理
 - [ ] 增加利用蠕虫马维持权限
 - [ ] 统一整个框架的请求类
+
+## 💡免责声明
+
+本程序仅供AWD线下赛使用，禁止用于非法用途，使用该工具就表示同意此条款，后续与作者无关
 
