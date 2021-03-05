@@ -2,6 +2,8 @@ from optparse import OptionParser
 import base64
 import re
 import hashlib
+
+#获取参数
 def parse_options():
     parser = OptionParser()
     parser.add_option("-m", "--module", \
@@ -24,11 +26,18 @@ def parse_options():
                       help="循环执行多少次默认一次")
     parser.add_option("-s", "--loop_time", \
                       dest="loop_time", default="0",type=int,
-                      help="每次循环执行暂停时间,默认0")
+                      help="每次循环执行暂停时间,默认0") 
+                      
+    parser.add_option("-C", "--config", \
+                      dest="config", default=0,
+                      help="改为 1 设置IP列表")     
     (options, args) = parser.parse_args()
 
     return options
 
+
+
+#加密方式
 def md5(s,salt=''):
     new_s = str(s) + salt
     m = hashlib.md5(new_s.encode())
@@ -40,6 +49,8 @@ def str_to_base64(str):
 def base64_to_str(base64str):
     return base64.b64decode(base64str.encode()).decode()
 
+
+#把主机地址加密，目前好像没用
 def get_backdoor_hash(target_ip, target_port):
     return md5(get_backdoor_password(target_ip,target_port))
 def get_backdoor_password(target_ip,target_port):
