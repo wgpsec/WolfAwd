@@ -30,7 +30,9 @@ def get_flag(target_ip, target_port):
         except Exception as e:
             flag = 'flag获取失败'
         return 'flag:' + flag
-    return 'echo --a--;cat /flag|base64 -w0;echo --b--;',find_flag
+    #在docker里可能会因为BusyBox不提供-w参数失败
+    #return 'echo --a--;cat /flag|base64 -w0;echo --b--;',find_flag
+    return 'echo --a--;cat /flag|base64;echo --b--;',find_flag
 
 @set_cmd_with_base64
 def submit_flag(target_ip, target_port):

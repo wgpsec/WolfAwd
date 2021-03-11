@@ -7,6 +7,9 @@ from library import all_guard_func
 from library.core import Attacker
 import importlib
 import traceback
+import threading
+
+
 AWD_PATH = os.getcwd()
 #这里可能没有权限要手动创建一个日志文件
 LOGS_PATH = AWD_PATH + '/logs/logs.log'
@@ -25,7 +28,7 @@ class WolfAwd():
         # if options.command:
             # action(target_ip, target_port, command)
 
-
+    #默认启用all_attack_func的方法
     def get_action_by_options(self, options):
         module = globals().get('all_' + options.module + '_func')
         return getattr(module, options.action)
@@ -77,7 +80,7 @@ class WolfAwd():
 
 
 
-    #应该是播报模块，目前好像没用
+    #显示模块
     def run_action(self, target_ip, target_port, command=''):
         if not command:
             cmd = self.get_action_cmd(target_ip, target_port)
@@ -85,24 +88,22 @@ class WolfAwd():
             cmd = self.get_action_cmd(target_ip, target_port, command)
         attacker = Attacker(target_ip, target_port, cmd, self.vulns)
         self.attacker.append(attacker)
-        logger.info('%s:%s action 完成 结果如下 ' % (target_ip, target_port))
         try:
             res = attacker.run()
-            logger.info(res)
+            logger.info('%s:%s action 完成 结果如下  \n\n' % (target_ip, target_port)+res+"\n\n-------------------------")
         except Exception as e:
             res = '运行失败'
             logger.info(res)
             logger.warning(e)
             logger.debug(traceback.format_exc())
-        logger.info('-------------------------')
 
 
     #批量执行
     def run(self):
         while self.loop:
             for target_ip, tartget_port in self.targets:
-                self.run_action(target_ip, tartget_port, self.command)
-
+                #改用多线程，不会卡住
+                threading.Thread(target=self.run_action,args=(target_ip, tartget_port, self.command)).start()
             self.loop -= 1
             time.sleep(self.loop_time)
     

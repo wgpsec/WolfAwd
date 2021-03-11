@@ -28,7 +28,7 @@ def parse_options():
                       dest="loop_time", default="0",type=int,
                       help="每次循环执行暂停时间,默认0") 
                       
-    parser.add_option("-C", "--config", \
+    parser.add_option("-T", "--target_config", \
                       dest="config", default=0,
                       help="改为 1 设置IP列表")     
     (options, args) = parser.parse_args()
